@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gRPC API II Version Control</title>
+    <title>Object Types</title>
     <style>
         :root {
             --sidebar-width: 300px;
@@ -31,7 +31,7 @@
         .container {
             display: flex;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -73,7 +73,6 @@
         .version-select-container {
             margin-top: auto;
         }
-        
 
         /* Collapsible tree styling */
         .collapsible {
@@ -81,50 +80,54 @@
             font-weight: bold;
             color: #192A80;
             margin-left: 0;
+            padding-left: 0;
         }
         
         .content {
-            display: block;
+            display: none;
             padding-left: 20px;
         }
-        
+
+        .sub-item {
+            margin-left: 10px;
+        }
+
         /* Main content styling */
-        #functionList {
+        #objectList {
             width: calc(100% - var(--sidebar-width)); /* Adjusts width to account for the sidebar */
-            margin-left: var(--sidebar-width);
+            margin-left: var(--sidebar-width); /* Offset to align with the fixed sidebar */
             padding: 20px;
         }
         
         /* Styling for the table */
-        #functionTable {
+        #objectTable {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
             background-color: white;
         }
         
-        #functionTable th, #functionTable td {
+        #objectTable th, #objectTable td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
         
-        #functionTable th {
+        #objectTable th {
             background-color: #192A80;
             color: white;
         }
 
-        #functionTable tr:hover {
+        #objectTable tr:hover {
             background-color: #f1f1f1;
         }
 
-        /* Section header row styling */
+        /* Section header styling */
         .section-header {
             background-color: #e9ecf7;
             font-weight: bold;
             text-align: left;
         }
-
     </style>
 </head>
 <body>
@@ -132,13 +135,27 @@
         <h1>gRPC Client Functions Database (prototype)</h1>
     </header>
     <div class="container">
-        <!-- Combo box for version selection -->
+        <!-- Sidebar navigation -->
         <nav class="sidebar">
-
-            <!-- Sidebar navigation -->
             <h2>Contents</h2>
             <div class="collapsible"><a href="main.html">List of Functions</a></div>
-            <div class="collapsible"><a href="objects_overview.html">RFEM Objects</a></div>
+
+            <!-- Collapsible Objects section -->
+            <div class="collapsible">RFEM Objects</div>
+            <div class="content">
+                <!-- Loop through folders -->
+                {% for folder in folders %}
+                <div class="collapsible">{{ folder.path }}</div>
+                <div class="content">
+                        <!-- Loop through files in folder -->
+                        {% for file in folder.files %}
+                            <a href="{{ file.url }}" class="sub-item">{{ file.name }}</a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <div class="collapsible"><a href="misc.html">Miscellaneous</a></div>
+            </div>
+
             <div class="collapsible"><a href="api_pricing.html">Credit Costs</a></div>
             <div class="collapsible"><a href="version_control.html">Client Versions</a></div>
             <div class="version-select-container">
@@ -146,36 +163,36 @@
                     <option value="6.01.0019">6.01.0019</option>
                     <option value="6.07.0014">6.07.0014</option>
                 </select>
+            </div>
         </nav>
 
-<!-- Main content section -->
-<main id="functionList">
-    <h2>Application Version Compatibility</h2>
-    <table id="functionTable">
-        <thead>
-            <tr>
-                <th>Python Client Version</th>
-                <th>Supported Application Versions</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr id="version1">
-                <td><strong>6.01.0019</td>
-                <td>6.01.0019</td>
-                <td>Deprecated</td>
-            </tr>
-
-            </tr>
-            <tr id="version2">
-                <td><strong>6.07.0014</strong></td>
-                <td>6.07.0014</td>
-                <td><font color="#EB9C00">Current</font></td>
-            </tr>
-        </tbody>
-    </table>
-
-</main>
+        <!-- Main content section -->
+        <main id="objectList">
+            <h2>Object Types</h2>
+            <table id="objectTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through sections (you could split these into separate categories too) -->
+                    {% for folder in folders %}
+                        <tr class="section-header" id="{{ folder.path }}">
+                            <td colspan="2">{{ folder.path }}</td>
+                        </tr>
+                        {% for file in folder.files %}
+                            <tr id="{{ file.name }}">
+                                <td><strong><a href="{{ file.url }}">{{ file.name }}</a></strong></td>
+                                <td>{{ file.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
 
     <script>
         // JavaScript to handle collapsible sidebar items
