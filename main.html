@@ -189,9 +189,15 @@
             <div class="content">
                 <!-- Application Functions Links -->
                 <a href="#create_new_model_section">create_new_model</a>
+                <a href="#open_model">open_model</a>
                 <a href="#save_model">save_model</a>
+                <a href="#close_model">close_model</a>
                 <a href="#close_all_models">close_all_models</a>
-                <a href="#close">close</a>
+                <a href="#close_connection">close_connection</a>
+                <a href="#get_active_model">get_active_model</a>
+                <a href="#close_application">close_application</a>
+                <a href="#get_model_list">get_model_list</a>
+                <a href="#get_app_info">get_app_info</a>
 
                 <!-- Model Functions Links -->
                 <a href="#create_object_section">create_object</a>
@@ -225,73 +231,112 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Application Functions section -->
+            <!-- Application Functions section - for now hand-written.-->
             <tr class="section-header">
                 <td colspan="3">Application Functions</td>
             </tr>
             <tr id="create_new_model">
-                <td><a href="#create_new_model_section"><strong>create_new_model</strong></a>(name)</td>
+                <td><a href="#create_new_model_section"><strong>create_new_model</strong></a></td>
                 <td>Creates a new model in RFEM.</td>
                 <td>-</td>
             </tr>
+            <tr id="open_model">
+                <td><a href="#open_model"><strong>open_model</strong></a></td>
+                <td>Opens model from the specified path. Returns model_id of opened model.</td>
+                <td>-</td>
+            </tr>
+
+            <tr id="save_model">
+                <td><a href="#save_model"><strong>save_model</strong></a></td>
+                <td>Saves model specified by model_id and path.</td>
+                <td><a href="api_pricing.html">Yes</a></td> <!-- Value set to "Yes" for "save_model" no other function in this list is chargeable -->
+            </tr>
+
+            <tr id="close_model">
+                <td><a href="#close_model"><strong>close_model</strong></a></td>
+                <td>Closes model specified by model_id.</td>
+                <td>-</td>
+            </tr>
+
             <tr id="close_all_models">
-                <td><a href="#close_all_models"><strong>close_all_models</strong></a>()</td>
+                <td><a href="#close_all_models"><strong>close_all_models</strong></a></td>
                 <td>Closes all open models in RFEM.</td>
                 <td>-</td>
             </tr>
-            <tr id="save_model">
-                <td><a href="#save_model"><strong>save_model</strong></a>()</td>
-                <td>Saves a model.</td>
-                <td><a href="api_pricing.html">Yes</a></td> <!-- Value set to "Yes" for "save_model" no other function in this list is chargeable -->
 
-            </tr>
-            <tr id="close">
-                <td><a href="#close"><strong>close</strong></a>()</td>
+            <tr id="close_connection">
+                <td><a href="#close_connection"><strong>close_connection</strong></a></td>
                 <td>Closes the gRPC channel.</td>
                 <td>-</td> 
             </tr>
 
-            <!-- Model Functions section -->
+            <tr id="get_active_model">
+                <td><a href="#get_active_model"><strong>get_active_model</strong></a></td>
+                <td> Returns model id of an active model.</td>
+                <td>-</td>
+            </tr>
+
+            <tr id="close_application">
+                <td><a href="#close_application"><strong>close_application</strong></a></td>
+                <td> Closes the whole application.</td>
+                <td>-</td>
+            </tr>
+
+            <tr id="get_model_list">
+                <td><a href="#get_model_list"><strong>get_model_list</strong></a></td>
+                <td> Returns list of models and information about them.</td>
+                <td>-</td>
+            </tr>
+
+            <tr id="get_app_info">
+                <td><a href="#get_app_info"><strong>get_app_info</strong></a></td>
+                <td> Returns information about the application.</td>
+                <td>-</td>
+            </tr>
+
+
+
+            <!-- Model Functions section - for now hand-written.-->
             <tr class="section-header">
                 <td colspan="3">Model Functions</td>
             </tr>
             <tr id="create_object">
-                <td><a href="#create_object_section"><strong>create_object</strong></a>(obj)</td>
+                <td><a href="#create_object_section"><strong>create_object</strong></a></td>
                 <td>Creates a single object in the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="create_objects">
-                <td><a href="#create_objects"><strong>create_objects</strong></a>(obj_list)</td>
+                <td><a href="#create_objects"><strong>create_objects</strong></a></td>
                 <td>Creates a list of objects in the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="update_object">
-                <td><a href="#update_object"><strong>update_object</strong></a>(obj)</td>
+                <td><a href="#update_object"><strong>update_object</strong></a></td>
                 <td>Updates a single object in the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="update_objects">
-                <td><a href="#update_objects"><strong>update_objects</strong></a>(obj_list)</td>
+                <td><a href="#update_objects"><strong>update_objects</strong></a></td>
                 <td>Updates a list of objects in the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="get_object">
-                <td><a href="#get_object_section"><strong>get_object</strong></a>(obj)</td>
+                <td><a href="#get_object_section"><strong>get_object</strong></a></td>
                 <td>Retrieves a single object from the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="get_objects">
-                <td><a href="#get_objects"><strong>get_objects</strong></a>(obj_list)</td>
+                <td><a href="#get_objects"><strong>get_objects</strong></a></td>
                 <td>Retrieves a list of objects from the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="delete_object">
-                <td><a href="#delete_object"><strong>delete_object</strong></a>(obj)</td>
+                <td><a href="#delete_object"><strong>delete_object</strong></a></td>
                 <td>Deletes a single object from the model.</td>
                 <td>-</td> 
             </tr>
             <tr id="delete_objects">
-                <td><a href="#delete_objects"><strong>delete_objects</strong></a>(obj_list)</td>
+                <td><a href="#delete_objects"><strong>delete_objects</strong></a></td>
                 <td>Deletes a list of objects from the model.</td>
                 <td>-</td> 
             </tr>
@@ -315,8 +360,6 @@
                         <td class="param-name">Parameters:</td>
                         <td class="param-detail">
                             <div>name: <em>string</em> - Name of the new model.</div>
-                            <div>another_param: <em>type</em> - Description of another parameter.</div>
-                            <div>another_param_2: <em>type</em> - Description of another parameter.</div>
                         </td>
                     </tr>
                 </table>
@@ -344,7 +387,7 @@ with RFEM(api_key_name='cantilever_project') as client:
 
             <div id="create_object_section" class="function-detail">
                 <h2>create_object</h2>
-                <code>create_object(obj)</code>
+                <code>create_object(obj, model_id=None)</code>
 		<br>
 
                 <h3>Description</h3>
@@ -356,6 +399,7 @@ with RFEM(api_key_name='cantilever_project') as client:
                         <td class="param-name">Parameters:</td>
                         <td class="param-detail">
                             <div><a href="objects_overview.html">obj</a> - Object to be created.</div>
+                            <div>model_id - Function will be called within the scope of this model.</div>
                         </td>
                     </tr>
                 </table>
@@ -386,7 +430,7 @@ with RFEM(api_key_name='cantilever_project') as client:
 
             <div id="get_object_section" class="function-detail">
                 <h2>get_object</h2>
-                <code>get_object(obj)</code>
+                <code>get_object(obj, model_id=None)</code>
 		<br>
 
                 <h3>Description</h3>
@@ -398,6 +442,7 @@ with RFEM(api_key_name='cantilever_project') as client:
                         <td class="param-name">Parameters:</td>
                         <td class="param-detail">
                             <div><a href="objects_overview.html">obj</a> - Object to be returned.</div>
+                            <div>model_id - Function will be called within the scope of this model.</div>
                         </td>
                     </tr>
                 </table>

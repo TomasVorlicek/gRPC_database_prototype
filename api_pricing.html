@@ -109,9 +109,15 @@
             text-align: left;
         }
 
+        #functionTable th{
+            text-align: center;
+        }
+
         #functionTable td:nth-child(2),
         #functionTable td:nth-child(3),
-        #functionTable td:nth-child(4) {
+        #functionTable td:nth-child(4),
+        #functionTable td:nth-child(5),
+        #functionTable td:nth-child(6) {
             text-align: center;
         }
         
@@ -156,50 +162,190 @@
 
 <!-- Main content section -->
 <main id="functionList">
-    <h2>API - Credit Cost per Function</h2>
+    <!-- Section for On Premises Prices -->
+    <h2>Webservice II | Credit Cost per API Function Call | On Premises</h2>
     <table id="functionTable">
         <thead>
+            <!-- Added row for common title -->
             <tr>
-                <th>Function Name</th>
-                <th>API Credits (up to 1000 objects)</th>
-                <th>API Credits (up to 5000 objects)</th>
-                <th>API Credits (10000+ objects)</th>
+                <th rowspan="2">Function Name</th>
+                <th colspan="5">Limit Number of Objects in the Model</th>
+            </tr>
+            <tr>
+                <th>100</th>
+                <th>500</th>
+                <th>2.000</th>
+                <th>10.000</th>
+                <th>> 10.000</th>
             </tr>
         </thead>
         <tbody>
             <!-- Application Functions section -->
             <tr class="section-header">
-                <td colspan="4">Application Functions</td>
+                <td colspan="6">Application Functions</td>
             </tr>
             <tr id="save_model">
                 <td><strong><a href="main.html">save_model</a></td>
                 <td>1</td>
-                <td>2</td>
-                <td>3</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+
+            <tr id="import_export">
+                <td><a href="main.html"><strong>Import/export data format</strong></a></td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
             </tr>
 
             <!-- Model Functions section -->
             <tr class="section-header">
-                <td colspan="4">Model Functions</td>
+                <td colspan="6">Model Functions</td>
             </tr>
-            <tr id="calculate_all">
-                <td><a href="main.html"><strong>calculate_all</strong></a></td>
+            <tr id="calculate_results_static_analysis">
+                <td><a href="main.html"><strong>calculate_results_static_analysis</strong></a></td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
+                <td>4</td>
+                <td>5</td>
             </tr>
-            <tr id="filler_func">
-                <td><a href="main.html"><strong>some_func_1</strong></a></td>
-                <td>-</td>
-                <td>-</td>
+
+            <tr id="calculate_results_addon">
+                <td><a href="main.html"><strong>calculate_results_addon</strong></a></td>
                 <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
             </tr>
-            <tr id="filler_func_2">
-                <td><a href="main.html"><strong>some_func_2</strong></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <hr>
+    <br>
+
+    <!-- Section for Cloud Prices -->
+    <h2>Webservice II | Credit Cost per API Function Call | Cloud</h2>
+    <table id="functionTable">
+        <thead>
+            <!-- Added row for common title -->
+            <tr>
+                <th rowspan="2" style="background-color: #0a65a6; color: #ffffff;">Function Name</th>
+                <th colspan="5" style="background-color: #0a65a6; color: #ffffff;">Limit Number of Objects in the Model</th>
             </tr>
+            <tr >
+                <th style="background-color: #0a65a6; color: #ffffff;">100</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">500</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">2.000</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">10.000</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">> 10.000</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Application Functions section -->
+            <tr class="section-header">
+                <td colspan="6">Application Functions</td>
+            </tr>
+            <tr id="save_model">
+                <td><strong><a href="main.html">save_model</a></td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+
+            <tr id="import_export">
+                <td><a href="main.html"><strong>Import/export data format</strong></a></td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+
+            <!-- Model Functions section -->
+            <tr class="section-header">
+                <td colspan="6">Model Functions</td>
+            </tr>
+            <tr id="calculate_results_static_analysis">
+                <td><a href="main.html"><strong>calculate_results_static_analysis</strong></a></td>
+                <td>2</td>
+                <td>4</td>
+                <td>6</td>
+                <td>8</td>
+                <td>10</td>
+            </tr>
+
+            <tr id="calculate_results_addon">
+                <td><a href="main.html"><strong>calculate_results_addon</strong></a></td>
+                <td>2</td>
+                <td>4</td>
+                <td>6</td>
+                <td>8</td>
+                <td>10</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <!-- Section for Cloud Session Prices (runtime) -->
+    <h2>Webservice II | Credit prices based on the duration of a session | Cloud</h2> 
+    <table id="functionTable">
+        <thead>
+            <!-- Added row for common title -->
+            <tr>
+                <th style="background-color: #0a65a6; color: #ffffff; text-align: left;">Type of virtual machine</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">CPU (count)</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">RAM (GB)</th>
+                <th style="background-color: #0a65a6; color: #ffffff;">Price per Minute (Credits)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="F4s">
+                <td><strong>F4s</td>
+                <td>4</td>
+                <td>8</td>
+                <td>Price</td>
+            </tr>
+
+            <tr id="F8s">
+                <td><strong>F8s</td>
+                <td>8</td>
+                <td>16</td>
+                <td>Price</td>
+            </tr>
+
+            <tr id="F16s">
+                <td><strong>F16s</td>
+                <td>16</td>
+                <td>32</td>
+                <td>Price</td>
+            </tr>
+
+            <tr id="F32s">
+                <td><strong>F32s</td>
+                <td>32</td>
+                <td>64</td>
+                <td>Price</td>
+            </tr>
+
+            <tr id="HC44rs">
+                <td><strong>HC44rs</td>
+                <td>44</td>
+                <td>352</td>
+                <td>Price</td>
+            </tr>
+
         </tbody>
     </table>
 
