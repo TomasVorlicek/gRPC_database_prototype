@@ -70,7 +70,7 @@
                 </thead>
                 <tbody>
                     {% for field in message.fields %}
-                    <tr>
+                    <tr {% if type_has_no_fields.get(field.type_raw, False) %}style="background-color: #ffefce;"{% endif %}>
                         <td>{{ field.name }}</td>
                         <td>{{ field.type }}</td>
                         <td>{{ field.description }}</td>

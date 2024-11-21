@@ -2,7 +2,7 @@ import re
 import os
 from jinja2 import Template
 
-def transform_types(input_data_type, output_html_file):
+def transform_types(input_data_type):
 
     transform_dict = {'int32' : 'int', 'double' : 'float', 'string' : 'str', 'bool' : 'bool'}
 
@@ -13,10 +13,10 @@ def transform_types(input_data_type, output_html_file):
     elif input_data_type == "vector_3d":
         return f"""<a href="../generated_html/common.html">{input_data_type}</a>"""
         
-    
     else:
         return f"""<a href="#{input_data_type}">{input_data_type}</a>"""
     
+
 def extract_proto_name(proto_file_path):
     """
     Extract the .proto file name for the title.
@@ -59,7 +59,8 @@ def extract_messages_and_enums_with_attributes(proto_file_path, output_html_file
                 if field_match:
                     optional_keyword = field_match.group(1) or ""  # Capture "optional" if it exists, might be useful later
                     repeated_keyword = field_match.group(2) or "" # I need to catch the repeated so that I can convert it into List[]
-                    field_type = transform_types(field_match.group(3), output_html_file)
+                    type_raw = field_match.group(3)
+                    field_type = transform_types(field_match.group(3))
                     field_name = field_match.group(4)
                     description = " ".join(current_comment).strip()
                                         
@@ -70,6 +71,7 @@ def extract_messages_and_enums_with_attributes(proto_file_path, output_html_file
                     fields.append({
                         "name": field_name,
                         "type": field_type,
+                        "type_raw" : type_raw, # Need the raw type for checking if the type used in table has no fields of its own (when the type is message)
                         "optional": bool(optional_keyword.strip()),  # True if "optional" is present, might be useful (?)
                         "description": description
                     })
@@ -111,13 +113,17 @@ def render_html_with_messages(title, messages, enums, template_path, output_path
     with open(template_path, 'r') as file:
         template_content = file.read()
 
+    # When the associated bool is True the row in template turns different color to highlight not yet supported messages
+    type_has_no_fields = {message["name"]: not bool(message["fields"]) for message in messages}    
+
     # The .proto order is such, that the "main" message is always first, 
     # this is leveraged in the template file.
     template = Template(template_content)
     rendered_html = template.render(
         title=title,
         messages=messages,
-        enums=enums
+        enums=enums,
+        type_has_no_fields=type_has_no_fields
     )
 
     with open(output_path, 'w') as output_file:
